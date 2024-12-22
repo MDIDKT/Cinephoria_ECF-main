@@ -1,2 +1,4 @@
 gesdinet_jwt_refresh_token:
+    user_identity_field: email # Remplace par le champ utilisateur pertinent (ex : username ou email)
     refresh_token_class: App\Entity\RefreshToken
+    ttl: 2592000 # Temps de vie des refresh tokens (30 jours ici)
