@@ -41,11 +41,14 @@ class Cinemas
     #[ORM\ManyToMany(targetEntity: Films::class, inversedBy: 'cinemas')]
     private Collection $film;
 
+    #[ORM\OneToMany(targetEntity: Reservations::class, mappedBy: 'cinemas')]
+    private Collection $reservations;
 
     public function __construct ()
     {
         $this->seance = new ArrayCollection();
         $this->film = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId (): ?int
@@ -153,6 +156,33 @@ class Cinemas
     {
         if (!$this->film->contains ($film)) {
             $this->film->add ($film);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservations>
+     */
+    public function getReservations (): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation (Reservations $reservation): static
+    {
+        if (!$this->reservations->contains ($reservation)) {
+            $this->reservations->add ($reservation);
+            $reservation->setCinemas ($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation (Reservations $reservation): static
+    {
+        if ($this->reservations->removeElement ($reservation) && $reservation->getCinemas () === $this) {
+            $reservation->setCinemas (null);
         }
 
         return $this;
