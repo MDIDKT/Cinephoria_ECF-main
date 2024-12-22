@@ -21,7 +21,7 @@ class HomeController extends AbstractController
                 'films' => $films,
             ]);
         } catch (TableNotFoundException $e) {
-            return new Response('Table "films" not found.', 500);
+            return new Response('Table "films" not found bbb.', 500);
         }
     }
 
