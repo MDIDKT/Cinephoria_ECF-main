@@ -5,8 +5,8 @@ services:
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
       # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pc6538ee8c1e06b9e795afc2af4948d2b7866f7817ead1d8ed6a7737f65f2d3a8}
+      POSTGRES_USER: ${POSTGRES_USER:-uan1uof3kb2bo7}
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     healthcheck:
