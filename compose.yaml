@@ -4,9 +4,8 @@ services:
     image: postgres:${POSTGRES_VERSION:-16}-alpine
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pc6538ee8c1e06b9e795afc2af4948d2b7866f7817ead1d8ed6a7737f65f2d3a8}
-      POSTGRES_USER: ${POSTGRES_USER:-uan1uof3kb2bo7}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+      POSTGRES_USER: ${POSTGRES_USER:-app}
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     healthcheck:
@@ -16,8 +15,6 @@ services:
       start_period: 60s
     volumes:
       - database_data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
 
 volumes:
