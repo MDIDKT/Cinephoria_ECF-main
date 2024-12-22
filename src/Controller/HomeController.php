@@ -11,10 +11,19 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
 
-    #[Route('/films/{id}', name: 'app_home_show', methods: ['GET'])]
-    public function show (Films $film): Response
+    #[Route('/', name: 'app_home', methods: ['GET'])]
+    public function index(FilmsRepository $filmsRepository): Response
     {
-        return $this->render ('films/show.html.twig', [
+        $films = $filmsRepository->findAll();
+        return $this->render('home/index.html.twig', [
+            'films' => $films,
+        ]);
+    }
+
+    #[Route('/films/{id}', name: 'app_home_show', methods: ['GET'])]
+    public function show(Films $film): Response
+    {
+        return $this->render('films/show.html.twig', [
             'film' => $film,
         ]);
     }
