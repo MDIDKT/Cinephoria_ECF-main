@@ -17,8 +17,11 @@ final class FilmsController extends AbstractController
     #[Route(name: 'app_films_index', methods: ['GET'])]
     public function index (FilmsRepository $filmsRepository): Response
     {
+        $filmsLast = $filmsRepository->findBy([], ['id' => 'DESC'], 5); // Récupère les 5 derniers films ajoutés
+
         return $this->render ('films/index.html.twig', [
             'films' => $filmsRepository->findAll (),
+            'filmsLast' => $filmsLast, // Passe la variable à la vue
         ]);
     }
 
